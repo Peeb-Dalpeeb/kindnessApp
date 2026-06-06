@@ -1,0 +1,23 @@
+{
+  "name": "mern-monorepo",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "dev:backend": "npm run dev --workspace=@mern-monorepo/backend",
+    "dev:frontend": "npm run dev --workspace=@mern-monorepo/frontend"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "eslint": "^9.4.0",
+    "globals": "^15.3.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.0.0"
+  }
+}

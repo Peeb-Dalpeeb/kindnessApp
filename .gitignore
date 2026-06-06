@@ -1,0 +1,59 @@
+# ==============================================================================
+# Dependency Directories
+# Blocks root and nested workspace dependencies (installed via npm workspaces)
+# ==============================================================================
+node_modules/
+
+
+# ==============================================================================
+# Machine-Generated Build & Distribution Outputs
+# Blocks all compiled/transpiled distribution code and production build directories
+# ==============================================================================
+dist/
+build/
+
+
+# ==============================================================================
+# TypeScript Build Caches
+# Blocks tsbuildinfo files used by TypeScript for incremental project references
+# ==============================================================================
+*.tsbuildinfo
+
+
+# ==============================================================================
+# Security Environments & Secrets
+# Blocks local environment variable files containing sensitive keys/passwords,
+# while allowing standard template files like .env.example
+# ==============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.env.local
+!.env.example
+
+
+# ==============================================================================
+# OS Metadata & IDE Configurations
+# Blocks local OS/system files and user-specific IDE settings (JetBrains, etc.),
+# while explicitly preserving shared team settings under .vscode
+# ==============================================================================
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# JetBrains IDE
+.idea/
+
+# VS Code - Ignore local workspace history/settings, but preserve team-shared configs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
