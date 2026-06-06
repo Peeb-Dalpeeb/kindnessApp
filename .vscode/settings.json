@@ -1,13 +1,23 @@
 {
+  // Use Prettier for default file formatting and format on save
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+
+  // Automatically run ESLint auto-fixes when saving files
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
   "eslint.useFlatConfig": true,
+
+  // Use the workspace-installed version of TypeScript rather than the global/builtin editor version
   "typescript.tsdk": "node_modules/typescript/lib",
+
+  // Custom regex patterns to enable Tailwind CSS autocomplete within classnames() and clsx() helpers
   "tailwindCSS.experimental.classRegex": [
     ["classnames\\(([^)]*?)\\)", "\"([^\"]*)\""],
     ["clsx\\(([^)]*?)\\)", "\"([^\"]*)\""]
-  ]
+  ],
+
+  // Prevent VS Code from raising warnings about Tailwind-specific CSS directives
+  "css.lint.unknownAtRules": "ignore"
 }
