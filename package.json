@@ -1,22 +1,37 @@
 {
-  "name": "mern-monorepo",
+  "name": "kindness-monorepo",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "tsc --build",
-    "clean": "tsc --build --clean",
+    "build:clean": "tsc --build --clean",
+    "dev:shared": "tsc --build packages/shared --watch",
+    "dev:backend": "npm run dev --workspace=@kindness/backend",
+    "dev:frontend": "npm run dev --workspace=@kindness/frontend",
+    "dev": "concurrently -n \"shared,backend,frontend\" -c \"blue,green,magenta\" \"npm run dev:shared\" \"npm run dev:backend\" \"npm run dev:frontend\"",
     "lint": "eslint .",
-    "dev:backend": "npm run dev --workspace=@mern-monorepo/backend",
-    "dev:frontend": "npm run dev --workspace=@mern-monorepo/frontend"
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "@types/node": "^20.14.2",
+    "concurrently": "^8.2.2",
     "eslint": "^9.4.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "eslint-plugin-tailwindcss": "^3.17.3",
     "globals": "^15.3.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.1",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.0.0"
   }

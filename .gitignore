@@ -1,29 +1,27 @@
 # ==============================================================================
 # Dependency Directories
-# Blocks root and nested workspace dependencies (installed via npm workspaces)
 # ==============================================================================
 node_modules/
-
+**/node_modules/
 
 # ==============================================================================
 # Machine-Generated Build & Distribution Outputs
-# Blocks all compiled/transpiled distribution code and production build directories
 # ==============================================================================
 dist/
+**/dist/
 build/
-
+**/build/
+out/
+**/out/
 
 # ==============================================================================
 # TypeScript Build Caches
-# Blocks tsbuildinfo files used by TypeScript for incremental project references
 # ==============================================================================
 *.tsbuildinfo
-
+**/*.tsbuildinfo
 
 # ==============================================================================
 # Security Environments & Secrets
-# Blocks local environment variable files containing sensitive keys/passwords,
-# while allowing standard template files like .env.example
 # ==============================================================================
 .env
 .env.local
@@ -32,28 +30,24 @@ build/
 .env.production.local
 *.env
 *.env.local
-!.env.example
 
+# Whitelist standard environment templates
+!.env.example
 
 # ==============================================================================
 # OS Metadata & IDE Configurations
-# Blocks local OS/system files and user-specific IDE settings (JetBrains, etc.),
-# while explicitly preserving shared team settings under .vscode
 # ==============================================================================
-# OS files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# JetBrains IDE
+# IDE files
 .idea/
-
-# VS Code - Ignore local workspace history/settings, but preserve team-shared configs
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
-!.vscode/launch.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

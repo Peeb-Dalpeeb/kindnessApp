@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { User, ApiResponse, formatGreeting } from '@mern-monorepo/shared';
+import dotenv from 'dotenv';
+import { greetUser, UserSchema } from '@kindness/shared';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -8,44 +11,27 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/greeting', (req, res) => {
-  const name = (req.query.name as string) || 'Developer';
-  const greetingMessage = formatGreeting(name);
-  
-  const response: ApiResponse<{ message: string }> = {
-    success: true,
-    data: {
-      message: greetingMessage
-    }
-  };
-  
-  res.json(response);
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.get('/api/users', (_req, res) => {
-  const users: User[] = [
-    {
-      id: '1',
-      name: 'Alice',
-      email: 'alice@example.com',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: '2',
-      name: 'Bob',
-      email: 'bob@example.com',
-      createdAt: new Date().toISOString()
-    }
-  ];
-  
-  const response: ApiResponse<User[]> = {
-    success: true,
-    data: users
-  };
-  
-  res.json(response);
+app.post('/api/users', (req, res) => {
+  const parseResult = UserSchema.safeParse(req.body);
+
+  if (!parseResult.success) {
+    res.status(400).json({ error: parseResult.error.flatten() });
+    return;
+  }
+
+  const user = parseResult.data;
+  const message = greetUser(user);
+
+  res.status(201).json({
+    message,
+    user,
+  });
 });
 
 app.listen(port, () => {
-  console.log(`Backend server is running on http://localhost:${port}`);
+  console.log(`[server]: Backend API running on http://localhost:${port}`);
 });
