@@ -1,37 +1,85 @@
-import express from 'express';
+import 'dotenv/config';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { greetUser, UserSchema } from '@kindness/shared';
-
-dotenv.config();
+import { Server } from 'http';
+import { connectDatabase, disconnectDatabase } from './config/database.js';
+import kindnessRoutes from './routes/kindness.routes.js';
+import userRoutes from './routes/user.routes.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
+// CORS setup: Restrict to custom origin if specified, otherwise default to local frontend
+const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:3000';
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  })
+);
 
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+// Payload limit to prevent DoS attacks
+app.use(express.json({ limit: '10kb' }));
+
+// API Routes
+app.use('/api/kindness', kindnessRoutes);
+app.use('/api/users', userRoutes);
+
+// Fallback for unmatched routes
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({ message: 'Resource not found' });
 });
 
-app.post('/api/users', (req, res) => {
-  const parseResult = UserSchema.safeParse(req.body);
+// Centralized error handler middleware
+app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+  console.error('[server]: Unhandled error:', err);
+  res.status(500).json({ message: 'An internal server error occurred.' });
+});
 
-  if (!parseResult.success) {
-    res.status(400).json({ error: parseResult.error.flatten() });
-    return;
+let server: Server;
+
+async function startServer() {
+  try {
+    await connectDatabase();
+    server = app.listen(port, () => {
+      console.log(`[server]: Backend API running on http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error('[server]: Error starting server:', error);
+    process.exit(1);
   }
+}
 
-  const user = parseResult.data;
-  const message = greetUser(user);
+// Graceful shutdown coordination
+async function handleShutdown(signal: string) {
+  console.log(`[server]: Received ${signal}. Starting graceful shutdown...`);
+  if (server) {
+    server.close(async (err) => {
+      if (err) {
+        console.error('[server]: Error closing HTTP server:', err);
+      } else {
+        console.log('[server]: HTTP server closed.');
+      }
+      try {
+        await disconnectDatabase();
+        process.exit(0);
+      } catch (dbErr) {
+        console.error('[server]: Error during database disconnection:', dbErr);
+        process.exit(1);
+      }
+    });
+  } else {
+    try {
+      await disconnectDatabase();
+      process.exit(0);
+    } catch (dbErr) {
+      console.error('[server]: Error during database disconnection:', dbErr);
+      process.exit(1);
+    }
+  }
+}
 
-  res.status(201).json({
-    message,
-    user,
-  });
-});
+process.on('SIGINT', () => handleShutdown('SIGINT'));
+process.on('SIGTERM', () => handleShutdown('SIGTERM'));
 
-app.listen(port, () => {
-  console.log(`[server]: Backend API running on http://localhost:${port}`);
-});
+startServer();
