@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
-import { createKindnessLog } from '../controllers/kindness.controller.js'; // Native ESM requires .js extension
+import { createKindnessLog, getKindnessLogsByUser } from '../controllers/kindness.controller.js'; // Native ESM requires .js extension
 
 const router = Router();
 
@@ -15,5 +15,10 @@ const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => P
  * straight to our secure point-allocating controller.
  */
 router.post('/', asyncHandler(createKindnessLog));
+
+/**
+ * Maps 'GET /user/:userId' (prefixed by /api/kindness) to retrieve logs for a specific user.
+ */
+router.get('/user/:userId', asyncHandler(getKindnessLogsByUser));
 
 export default router;
