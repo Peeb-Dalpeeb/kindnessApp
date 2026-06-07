@@ -1,0 +1,22 @@
+info:
+  name: KindnessLive
+  type: http
+
+http:
+  method: POST
+  url: https://kindnessapp.onrender.com/api/kindness
+  body:
+    type: json
+    data: |
+      {
+        "userId": "6a24fc36ff0f444f26dc17ce",
+        "category": "Helping Hand",
+        "description": "Helped a colleague debug a complex database query for over an hour."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

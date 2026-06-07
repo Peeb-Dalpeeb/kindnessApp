@@ -1,0 +1,20 @@
+info:
+  name: LiveUsers
+  type: http
+
+http:
+  method: POST
+  url: https://kindnessapp.onrender.com/api/users
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Test2"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

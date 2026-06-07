@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:5000/api/kindness/user/6a24ef9c5e1f33791367314a
+  url: https://kindnessapp.onrender.com/api/kindness/user/6a24ef9c5e1f33791367314a
   auth: inherit
 
 settings:
