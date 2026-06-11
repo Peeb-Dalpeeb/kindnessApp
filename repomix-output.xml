@@ -1,0 +1,1159 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+The content has been processed where comments have been removed, empty lines have been removed, line numbers have been added.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Code comments have been removed from supported file types
+- Empty lines have been removed from all files
+- Line numbers have been added to the beginning of each line
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+.prettierrc
+.repomixignore
+eslint.config.js
+package.json
+packages/backend/.env.example
+packages/backend/KindnessApp/GetKindnessLogsByUser.yml
+packages/backend/KindnessApp/Kindness.yml
+packages/backend/KindnessApp/KindnessLive.yml
+packages/backend/KindnessApp/LiveUsers.yml
+packages/backend/KindnessApp/opencollection.yml
+packages/backend/KindnessApp/Users.yml
+packages/backend/package.json
+packages/backend/src/config/database.ts
+packages/backend/src/controllers/kindness.controller.ts
+packages/backend/src/controllers/user.controller.ts
+packages/backend/src/index.ts
+packages/backend/src/models/KindnessLog.ts
+packages/backend/src/models/User.ts
+packages/backend/src/routes/kindness.routes.ts
+packages/backend/src/routes/user.routes.ts
+packages/backend/tsconfig.json
+packages/frontend/index.html
+packages/frontend/package.json
+packages/frontend/postcss.config.js
+packages/frontend/src/App.tsx
+packages/frontend/src/index.css
+packages/frontend/src/main.tsx
+packages/frontend/src/vite-env.d.ts
+packages/frontend/tailwind.config.js
+packages/frontend/tsconfig.json
+packages/frontend/tsconfig.node.json
+packages/frontend/vite.config.d.ts
+packages/frontend/vite.config.js
+packages/frontend/vite.config.ts
+packages/shared/package.json
+packages/shared/src/index.ts
+packages/shared/tsconfig.json
+repomix.config.json
+tsconfig.base.json
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".repomixignore">
+1: # Add patterns to ignore here, one per line
+2: # Example:
+3: # *.log
+4: # tmp/
+</file>
+
+<file path="repomix.config.json">
+ 1: {
+ 2:   "$schema": "https://repomix.com/schemas/latest/schema.json",
+ 3:   "input": {
+ 4:     "maxFileSize": 52428800
+ 5:   },
+ 6:   "output": {
+ 7:     "filePath": "repomix-output.xml",
+ 8:     "style": "xml",
+ 9:     "parsableStyle": false,
+10:     "fileSummary": true,
+11:     "directoryStructure": true,
+12:     "files": true,
+13:     "removeComments": true,
+14:     "removeEmptyLines": true,
+15:     "compress": false,
+16:     "topFilesLength": 5,
+17:     "showLineNumbers": true,
+18:     "truncateBase64": false,
+19:     "copyToClipboard": false,
+20:     "includeFullDirectoryStructure": true,
+21:     "tokenCountTree": true,
+22:     "git": {
+23:       "sortByChanges": true,
+24:       "sortByChangesMaxCommits": 100,
+25:       "includeDiffs": false,
+26:       "includeLogs": false,
+27:       "includeLogsCount": 50
+28:     }
+29:   },
+30:   "include": [],
+31:   "ignore": {
+32:     "useGitignore": true,
+33:     "useDotIgnore": true,
+34:     "useDefaultPatterns": true,
+35:     "customPatterns": []
+36:   },
+37:   "security": {
+38:     "enableSecurityCheck": true
+39:   },
+40:   "tokenCount": {
+41:     "encoding": "o200k_base"
+42:   }
+43: }
+</file>
+
+<file path=".prettierrc">
+ 1: {
+ 2:   "semi": true,
+ 3:   "singleQuote": true,
+ 4:   "tabWidth": 2,
+ 5:   "trailingComma": "all",
+ 6:   "printWidth": 100,
+ 7:   "bracketSpacing": true,
+ 8:   "arrowParens": "always",
+ 9:   "plugins": ["prettier-plugin-tailwindcss"]
+10: }
+</file>
+
+<file path="packages/backend/KindnessApp/Kindness.yml">
+ 1: info:
+ 2:   name: Kindness
+ 3:   type: http
+ 4: http:
+ 5:   method: POST
+ 6:   url: http://localhost:5000/api/kindness
+ 7:   auth: inherit
+ 8: settings:
+ 9:   encodeUrl: true
+10:   timeout: 0
+11:   followRedirects: true
+12:   maxRedirects: 5
+</file>
+
+<file path="packages/backend/KindnessApp/KindnessLive.yml">
+ 1: info:
+ 2:   name: KindnessLive
+ 3:   type: http
+ 4: http:
+ 5:   method: POST
+ 6:   url: https://kindnessapp.onrender.com/api/kindness
+ 7:   body:
+ 8:     type: json
+ 9:     data: |
+10:       {
+11:         "userId": "6a24fc36ff0f444f26dc17ce",
+12:         "category": "Helping Hand",
+13:         "description": "Helped a colleague debug a complex database query for over an hour."
+14:       }
+15:   auth: inherit
+16: settings:
+17:   encodeUrl: true
+18:   timeout: 0
+19:   followRedirects: true
+20:   maxRedirects: 5
+</file>
+
+<file path="packages/backend/KindnessApp/LiveUsers.yml">
+ 1: info:
+ 2:   name: LiveUsers
+ 3:   type: http
+ 4: http:
+ 5:   method: POST
+ 6:   url: https://kindnessapp.onrender.com/api/users
+ 7:   body:
+ 8:     type: json
+ 9:     data: |-
+10:       {
+11:         "name": "Test2"
+12:       }
+13:   auth: inherit
+14: settings:
+15:   encodeUrl: true
+16:   timeout: 0
+17:   followRedirects: true
+18:   maxRedirects: 5
+</file>
+
+<file path="packages/backend/KindnessApp/opencollection.yml">
+1: opencollection: 1.0.0
+2: info:
+3:   name: KindnessApp
+4: bundled: false
+5: extensions:
+6:   bruno:
+7:     ignore:
+8:       - node_modules
+9:       - .git
+</file>
+
+<file path="packages/backend/KindnessApp/Users.yml">
+ 1: info:
+ 2:   name: Users
+ 3:   type: http
+ 4:   seq: 1
+ 5: http:
+ 6:   method: POST
+ 7:   url: http://localhost:5000/api/users
+ 8:   body:
+ 9:     type: json
+10:     data: |-
+11:       {
+12:         "name": "Test1"
+13:       }
+14:   auth: inherit
+15: settings:
+16:   encodeUrl: true
+17:   timeout: 0
+18:   followRedirects: true
+19:   maxRedirects: 5
+</file>
+
+<file path="packages/backend/src/config/database.ts">
+ 1: import mongoose from 'mongoose';
+ 2: mongoose.connection.on('error', (err) => {
+ 3:   console.error('[database]: MongoDB connection error:', err);
+ 4: });
+ 5: mongoose.connection.on('disconnected', () => {
+ 6:   console.warn('[database]: MongoDB connection disconnected.');
+ 7: });
+ 8: export async function disconnectDatabase(): Promise<void> {
+ 9:   try {
+10:     console.log('[database]: Disconnecting from MongoDB...');
+11:     await mongoose.connection.close();
+12:     console.log('[database]: Successfully disconnected from MongoDB.');
+13:   } catch (error) {
+14:     console.error('[database]: Error disconnecting from MongoDB:', error);
+15:     throw error;
+16:   }
+17: }
+18: export async function connectDatabase(): Promise<void> {
+19:   const databaseUrl = process.env.DATABASE_URL;
+20:   if (!databaseUrl) {
+21:     console.error('[database]: DATABASE_URL is not defined in environment variables.');
+22:     process.exit(1);
+23:   }
+24:   try {
+25:     console.log('[database]: Connecting to MongoDB...');
+26:     await mongoose.connect(databaseUrl);
+27:     console.log('[database]: Successfully connected to MongoDB.');
+28:   } catch (error) {
+29:     console.error('[database]: Error connecting to MongoDB:', error);
+30:     process.exit(1);
+31:   }
+32: }
+</file>
+
+<file path="packages/backend/src/controllers/user.controller.ts">
+ 1: import { Request, Response } from 'express';
+ 2: import { UserSchema } from '@kindness/shared';
+ 3: import { UserModel } from '../models/User.js';
+ 4: export const createUser = async (req: Request, res: Response): Promise<void> => {
+ 5:   try {
+ 6:     const validationResult = UserSchema.safeParse(req.body);
+ 7:     if (!validationResult.success) {
+ 8:       res.status(400).json({
+ 9:         message: 'Validation failed',
+10:         errors: validationResult.error.format()
+11:       });
+12:       return;
+13:     }
+14:     const { name } = validationResult.data;
+15:     const existingUser = await UserModel.findOne({ name });
+16:     if (existingUser) {
+17:       res.status(409).json({
+18:         message: `An individual named "${name}" is already pre-populated in the system.`
+19:       });
+20:       return;
+21:     }
+22:     const newUser = await UserModel.create({ name });
+23:     res.status(201).json({
+24:       message: 'User created successfully!',
+25:       data: newUser
+26:     });
+27:   } catch (error) {
+28:     console.error('[user.controller]: Error creating user:', error);
+29:     res.status(500).json({
+30:       message: 'An internal server error occurred while processing your request.'
+31:     });
+32:   }
+33: };
+</file>
+
+<file path="packages/backend/src/models/KindnessLog.ts">
+ 1: import { Schema, model, Types } from 'mongoose';
+ 2: import { type KindnessLog, CATEGORY_LABELS } from '@kindness/shared';
+ 3: export interface IKindnessLog extends Omit<KindnessLog, 'userId' | 'personName' | 'description'> {
+ 4:   userId: Types.ObjectId;
+ 5:   description?: string;
+ 6:   pointsEarned: number;
+ 7:   createdAt?: Date;
+ 8:   updatedAt?: Date;
+ 9: }
+10: const KindnessLogSchema = new Schema<IKindnessLog>(
+11:   {
+12:     userId: {
+13:       type: Schema.Types.ObjectId,
+14:       ref: 'User',
+15:       required: true,
+16:       index: true,
+17:     },
+18:     category: {
+19:       type: String,
+20:       required: [true, 'Category is required'],
+21:       enum: {
+22:         values: CATEGORY_LABELS,
+23:         message: '{VALUE} is not a valid kindness category',
+24:       },
+25:     },
+26:     pointsEarned: {
+27:       type: Number,
+28:       required: [true, 'Points earned is required'],
+29:       min: [1, 'Points must be a positive number'],
+30:     },
+31:     description: {
+32:       type: String,
+33:       trim: true,
+34:       maxlength: [200, 'Description cannot exceed 200 characters'],
+35:     },
+36:   },
+37:   {
+38:     timestamps: true,
+39:   }
+40: );
+41: export const KindnessLogModel = model<IKindnessLog>('KindnessLog', KindnessLogSchema);
+</file>
+
+<file path="packages/backend/src/models/User.ts">
+ 1: import { Schema, model } from 'mongoose';
+ 2: export interface IUser {
+ 3:   name: string;
+ 4:   createdAt?: Date;
+ 5:   updatedAt?: Date;
+ 6: }
+ 7: const UserSchema = new Schema<IUser>(
+ 8:   {
+ 9:     name: {
+10:       type: String,
+11:       required: [true, 'User name is required'],
+12:       trim: true,
+13:       unique: true,
+14:     },
+15:   },
+16:   {
+17:     timestamps: true,
+18:   }
+19: );
+20: export const UserModel = model<IUser>('User', UserSchema);
+</file>
+
+<file path="packages/backend/src/routes/user.routes.ts">
+1: import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
+2: import { createUser } from '../controllers/user.controller.js';
+3: const router = Router();
+4: const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>): RequestHandler =>
+5:   (req, res, next) => {
+6:     Promise.resolve(fn(req, res, next)).catch(next);
+7:   };
+8: router.post('/', asyncHandler(createUser));
+9: export default router;
+</file>
+
+<file path="packages/frontend/postcss.config.js">
+1: export default {
+2:   plugins: {
+3:     tailwindcss: {},
+4:     autoprefixer: {},
+5:   },
+6: };
+</file>
+
+<file path="packages/frontend/src/vite-env.d.ts">
+1: 
+</file>
+
+<file path="packages/frontend/tailwind.config.js">
+ 1: export default {
+ 2:   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', '../shared/src/**/*.{js,ts,jsx,tsx}'],
+ 3:   theme: {
+ 4:     extend: {
+ 5:       fontFamily: {
+ 6:         sans: ['Inter', 'sans-serif'],
+ 7:       },
+ 8:     },
+ 9:   },
+10:   plugins: [],
+11: };
+</file>
+
+<file path="packages/frontend/tsconfig.node.json">
+ 1: {
+ 2:   "compilerOptions": {
+ 3:     "composite": true,
+ 4:     "module": "ESNext",
+ 5:     "moduleResolution": "Bundler",
+ 6:     "allowSyntheticDefaultImports": true,
+ 7:     "strict": true,
+ 8:     "skipLibCheck": true
+ 9:   },
+10:   "include": ["vite.config.ts"]
+11: }
+</file>
+
+<file path=".gitignore">
+ 1: # ==============================================================================
+ 2: # Dependency Directories
+ 3: # ==============================================================================
+ 4: node_modules/
+ 5: **/node_modules/
+ 6: 
+ 7: # ==============================================================================
+ 8: # Machine-Generated Build & Distribution Outputs
+ 9: # ==============================================================================
+10: dist/
+11: **/dist/
+12: build/
+13: **/build/
+14: out/
+15: **/out/
+16: 
+17: # ==============================================================================
+18: # TypeScript Build Caches
+19: # ==============================================================================
+20: *.tsbuildinfo
+21: **/*.tsbuildinfo
+22: 
+23: # ==============================================================================
+24: # Security Environments & Secrets
+25: # ==============================================================================
+26: .env
+27: .env.local
+28: .env.development.local
+29: .env.test.local
+30: .env.production.local
+31: *.env
+32: *.env.local
+33: 
+34: # Whitelist standard environment templates
+35: !.env.example
+36: 
+37: # ==============================================================================
+38: # OS Metadata & IDE Configurations
+39: # ==============================================================================
+40: .DS_Store
+41: Thumbs.db
+42: desktop.ini
+43: 
+44: # IDE files
+45: .idea/
+46: .vscode/*
+47: !.vscode/extensions.json
+48: !.vscode/settings.json
+49: *.suo
+50: *.ntvs*
+51: *.njsproj
+52: *.sln
+53: *.sw?
+</file>
+
+<file path="eslint.config.js">
+ 1: import js from '@eslint/js';
+ 2: import tseslint from 'typescript-eslint';
+ 3: import reactPlugin from 'eslint-plugin-react';
+ 4: import reactHooksPlugin from 'eslint-plugin-react-hooks';
+ 5: import reactRefreshPlugin from 'eslint-plugin-react-refresh';
+ 6: import tailwindPlugin from 'eslint-plugin-tailwindcss';
+ 7: import globals from 'globals';
+ 8: import path from 'path';
+ 9: import { fileURLToPath } from 'url';
+10: const __filename = fileURLToPath(import.meta.url);
+11: const __dirname = path.dirname(__filename);
+12: const tailwindConfigPath = path.resolve(__dirname, 'packages/frontend/tailwind.config.js');
+13: export default tseslint.config(
+14:   {
+15:     ignores: [
+16:       '**/dist/**',
+17:       '**/build/**',
+18:       '**/node_modules/**',
+19:       'eslint.config.js',
+20:       'prettier.config.js',
+21:       'tailwind.config.js',
+22:       'postcss.config.js',
+23:       'vite.config.ts',
+24:     ],
+25:   },
+26:   js.configs.recommended,
+27:   ...tseslint.configs.recommended,
+28:   ...tseslint.configs.strict,
+29:   ...tseslint.configs.stylistic,
+30:   {
+31:     files: ['**/*.ts', '**/*.tsx'],
+32:     languageOptions: {
+33:       parser: tseslint.parser,
+34:       parserOptions: {
+35:         ecmaVersion: 'latest',
+36:         sourceType: 'module',
+37:       },
+38:       globals: {
+39:         ...globals.browser,
+40:         ...globals.node,
+41:         ...globals.es2022,
+42:       },
+43:     },
+44:     rules: {
+45:       '@typescript-eslint/no-explicit-any': 'error',
+46:       '@typescript-eslint/no-unused-vars': [
+47:         'error',
+48:         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+49:       ],
+50:     },
+51:   },
+52:   {
+53:     ...reactPlugin.configs.flat.recommended,
+54:     ...reactPlugin.configs.flat['jsx-runtime'],
+55:     files: ['packages/frontend/src/**/*.{ts,tsx}'],
+56:     plugins: {
+57:       ...reactPlugin.configs.flat.recommended.plugins,
+58:       ...reactPlugin.configs.flat['jsx-runtime'].plugins,
+59:       'react-hooks': reactHooksPlugin,
+60:       'react-refresh': reactRefreshPlugin,
+61:       tailwindcss: tailwindPlugin,
+62:     },
+63:     rules: {
+64:       ...reactPlugin.configs.flat.recommended.rules,
+65:       ...reactPlugin.configs.flat['jsx-runtime'].rules,
+66:       'react-hooks/rules-of-hooks': 'error',
+67:       'react-hooks/exhaustive-deps': 'warn',
+68:       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+69:       'tailwindcss/classnames-order': 'warn',
+70:       'tailwindcss/enforces-negative-arbitrary-values': 'warn',
+71:       'tailwindcss/enforces-shorthand': 'warn',
+72:       'tailwindcss/no-contradicting-classname': 'error',
+73:       'tailwindcss/no-custom-classname': 'off',
+74:     },
+75:     settings: {
+76:       react: {
+77:         version: 'detect',
+78:       },
+79:       tailwindcss: {
+80:         callees: ['classnames', 'clsx', 'ctl'],
+81:         config: tailwindConfigPath,
+82:       },
+83:     },
+84:   },
+85: );
+</file>
+
+<file path="packages/backend/KindnessApp/GetKindnessLogsByUser.yml">
+ 1: info:
+ 2:   name: Get Kindness Logs By User
+ 3:   type: http
+ 4:   seq: 1
+ 5: http:
+ 6:   method: GET
+ 7:   url: https://kindnessapp.onrender.com/api/kindness/user/6a24ef9c5e1f33791367314a
+ 8:   auth: inherit
+ 9: settings:
+10:   encodeUrl: true
+11:   timeout: 0
+12:   followRedirects: true
+13:   maxRedirects: 5
+</file>
+
+<file path="packages/backend/src/controllers/kindness.controller.ts">
+ 1: import { Request, Response } from 'express';
+ 2: import { Types } from 'mongoose';
+ 3: import { KindnessLogSchema, KINDNESS_CATEGORIES } from '@kindness/shared';
+ 4: import { KindnessLogModel } from '../models/KindnessLog.js';
+ 5: import { UserModel } from '../models/User.js';
+ 6: export const createKindnessLog = async (req: Request, res: Response): Promise<void> => {
+ 7:   try {
+ 8:     const validationResult = KindnessLogSchema.safeParse(req.body);
+ 9:     if (!validationResult.success) {
+10:       res.status(400).json({
+11:         message: 'Validation failed',
+12:         errors: validationResult.error.format()
+13:       });
+14:       return;
+15:     }
+16:     const { userId, category, description } = validationResult.data;
+17:     const matchedCategoryConfig = Object.values(KINDNESS_CATEGORIES).find(
+18:       (c) => c.label === category
+19:     );
+20:     if (!matchedCategoryConfig) {
+21:       res.status(500).json({
+22:         message: 'Configuration error: Category point mapping not found.'
+23:       });
+24:       return;
+25:     }
+26:     const pointsEarned = matchedCategoryConfig.points;
+27:     const newLog = await KindnessLogModel.create({
+28:       userId,
+29:       category,
+30:       pointsEarned,
+31:       description
+32:     });
+33:     res.status(201).json({
+34:       message: 'Kindness recorded successfully!',
+35:       data: newLog
+36:     });
+37:   } catch (error) {
+38:     console.error('[kindness.controller]: Error creating log:', error);
+39:     res.status(500).json({
+40:       message: 'An internal server error occurred while processing your request.'
+41:     });
+42:   }
+43: };
+44: export const getKindnessLogsByUser = async (req: Request, res: Response): Promise<void> => {
+45:   try {
+46:     const { userId } = req.params;
+47:     if (!userId || !Types.ObjectId.isValid(userId)) {
+48:       res.status(400).json({
+49:         message: 'Invalid user ID format.'
+50:       });
+51:       return;
+52:     }
+53:     const userExists = await UserModel.exists({ _id: userId });
+54:     if (!userExists) {
+55:       res.status(404).json({
+56:         message: 'User not found.'
+57:       });
+58:       return;
+59:     }
+60:     const logs = await KindnessLogModel.find({ userId }).sort({ createdAt: -1 });
+61:     res.status(200).json({
+62:       message: 'Kindness logs retrieved successfully.',
+63:       data: logs
+64:     });
+65:   } catch (error) {
+66:     console.error('[kindness.controller]: Error getting logs for user:', error);
+67:     res.status(500).json({
+68:       message: 'An internal server error occurred while processing your request.'
+69:     });
+70:   }
+71: };
+</file>
+
+<file path="packages/backend/src/routes/kindness.routes.ts">
+ 1: import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
+ 2: import { createKindnessLog, getKindnessLogsByUser } from '../controllers/kindness.controller.js';
+ 3: const router = Router();
+ 4: const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>): RequestHandler =>
+ 5:   (req, res, next) => {
+ 6:     Promise.resolve(fn(req, res, next)).catch(next);
+ 7:   };
+ 8: router.post('/', asyncHandler(createKindnessLog));
+ 9: router.get('/user/:userId', asyncHandler(getKindnessLogsByUser));
+10: export default router;
+</file>
+
+<file path="packages/backend/tsconfig.json">
+ 1: {
+ 2:   "extends": "../../tsconfig.base.json",
+ 3:   "compilerOptions": {
+ 4:     "outDir": "./dist",
+ 5:     "rootDir": "./src",
+ 6:     "composite": true
+ 7:   },
+ 8:   "references": [{ "path": "../shared" }],
+ 9:   "include": ["src/**/*"]
+10: }
+</file>
+
+<file path="packages/frontend/index.html">
+ 1: <!doctype html>
+ 2: <html lang="en">
+ 3:   <head>
+ 4:     <meta charset="UTF-8" />
+ 5:     <link
+ 6:       rel="icon"
+ 7:       type="image/svg+xml"
+ 8:       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>"
+ 9:     />
+10:     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+11:     <title>KindnessApp Monorepo</title>
+12:     <link rel="preconnect" href="https://fonts.googleapis.com" />
+13:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+14:     <link
+15:       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+16:       rel="stylesheet"
+17:     />
+18:   </head>
+19:   <body class="min-h-screen bg-slate-950 text-slate-100">
+20:     <div id="root"></div>
+21:     <script type="module" src="/src/main.tsx"></script>
+22:   </body>
+23: </html>
+</file>
+
+<file path="packages/frontend/tsconfig.json">
+ 1: {
+ 2:   "extends": "../../tsconfig.base.json",
+ 3:   "compilerOptions": {
+ 4:     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+ 5:     "outDir": "./dist",
+ 6:     "rootDir": "./src",
+ 7:     "composite": true,
+ 8:     "jsx": "react-jsx",
+ 9:     "module": "ESNext",
+10:     "moduleResolution": "Bundler",
+11:     "allowSyntheticDefaultImports": true
+12:   },
+13:   "references": [{ "path": "../shared" }],
+14:   "include": ["src/**/*"]
+15: }
+</file>
+
+<file path="packages/frontend/vite.config.d.ts">
+1: declare const _default: import("vite").UserConfig;
+2: export default _default;
+</file>
+
+<file path="packages/frontend/vite.config.js">
+1: import { defineConfig } from 'vite';
+2: import react from '@vitejs/plugin-react';
+3: import tsconfigPaths from 'vite-tsconfig-paths';
+4: export default defineConfig({
+5:     plugins: [react(), tsconfigPaths()],
+6:     server: {
+7:         port: 3000,
+8:     },
+9: });
+</file>
+
+<file path="packages/frontend/vite.config.ts">
+1: import { defineConfig } from 'vite';
+2: import react from '@vitejs/plugin-react';
+3: import tsconfigPaths from 'vite-tsconfig-paths';
+4: export default defineConfig({
+5:   plugins: [react(), tsconfigPaths()],
+6:   server: {
+7:     port: 3000,
+8:   },
+9: });
+</file>
+
+<file path="packages/shared/package.json">
+ 1: {
+ 2:   "name": "@kindness/shared",
+ 3:   "version": "1.0.0",
+ 4:   "private": true,
+ 5:   "type": "module",
+ 6:   "main": "./dist/index.js",
+ 7:   "types": "./dist/index.d.ts",
+ 8:   "exports": {
+ 9:     ".": {
+10:       "types": "./dist/index.d.ts",
+11:       "default": "./dist/index.js"
+12:     }
+13:   },
+14:   "scripts": {
+15:     "build": "tsc"
+16:   },
+17:   "dependencies": {
+18:     "zod": "^3.23.8"
+19:   }
+20: }
+</file>
+
+<file path="packages/shared/tsconfig.json">
+1: {
+2:   "extends": "../../tsconfig.base.json",
+3:   "compilerOptions": {
+4:     "outDir": "./dist",
+5:     "rootDir": "./src",
+6:     "composite": true
+7:   },
+8:   "include": ["src/**/*"]
+9: }
+</file>
+
+<file path="tsconfig.base.json">
+ 1: {
+ 2:   "compilerOptions": {
+ 3:     "target": "ES2022",
+ 4:     "module": "NodeNext",
+ 5:     "moduleResolution": "NodeNext",
+ 6:     "lib": ["ES2022"],
+ 7: 
+ 8:     /* Strict Type-Checking Options */
+ 9:     "strict": true,
+10:     "noImplicitAny": true,
+11:     "strictNullChecks": true,
+12:     "strictFunctionTypes": true,
+13:     "strictBindCallApply": true,
+14:     "strictPropertyInitialization": true,
+15:     "noImplicitThis": true,
+16:     "alwaysStrict": true,
+17: 
+18:     /* Additional Checks */
+19:     "noUnusedLocals": true,
+20:     "noUnusedParameters": true,
+21:     "noImplicitReturns": true,
+22:     "noFallthroughCasesInSwitch": true,
+23:     "noUncheckedIndexedAccess": true,
+24: 
+25:     /* Modules & Resolution */
+26:     "esModuleInterop": true,
+27:     "forceConsistentCasingInFileNames": true,
+28:     "skipLibCheck": true,
+29: 
+30:     /* Project References Outputs */
+31:     "declaration": true,
+32:     "declarationMap": true,
+33:     "sourceMap": true
+34:   }
+35: }
+</file>
+
+<file path="tsconfig.json">
+1: {
+2:   "files": [],
+3:   "references": [
+4:     { "path": "./packages/shared" },
+5:     { "path": "./packages/backend" },
+6:     { "path": "./packages/frontend" },
+7:     { "path": "./packages/frontend/tsconfig.node.json" }
+8:   ]
+9: }
+</file>
+
+<file path="package.json">
+ 1: {
+ 2:   "name": "kindness-monorepo",
+ 3:   "version": "1.0.0",
+ 4:   "private": true,
+ 5:   "type": "module",
+ 6:   "engines": {
+ 7:     "node": ">=18.0.0"
+ 8:   },
+ 9:   "workspaces": [
+10:     "packages/*"
+11:   ],
+12:   "scripts": {
+13:     "build": "tsc --build",
+14:     "build:clean": "tsc --build --clean",
+15:     "dev:shared": "tsc --build packages/shared --watch",
+16:     "dev:backend": "npm run dev --workspace=@kindness/backend",
+17:     "dev:frontend": "npm run dev --workspace=@kindness/frontend",
+18:     "dev": "concurrently -n \"shared,backend,frontend\" -c \"blue,green,magenta\" \"npm run dev:shared\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+19:     "lint": "eslint .",
+20:     "format": "prettier --write ."
+21:   },
+22:   "devDependencies": {
+23:     "@eslint/js": "^9.4.0",
+24:     "@types/node": "^20.14.2",
+25:     "concurrently": "^8.2.2",
+26:     "eslint": "^9.4.0",
+27:     "eslint-plugin-react": "^7.34.2",
+28:     "eslint-plugin-react-hooks": "^5.0.0",
+29:     "eslint-plugin-react-refresh": "^0.4.7",
+30:     "eslint-plugin-tailwindcss": "^3.17.3",
+31:     "globals": "^15.3.0",
+32:     "prettier": "^3.3.0",
+33:     "prettier-plugin-tailwindcss": "^0.6.1",
+34:     "tailwindcss": "^3.4.4",
+35:     "typescript": "^5.4.5",
+36:     "typescript-eslint": "^8.0.0"
+37:   },
+38:   "overrides": {
+39:     "esbuild": "^0.25.0",
+40:     "vite": {
+41:       "esbuild": "^0.25.0"
+42:     }
+43:   }
+44: }
+</file>
+
+<file path="packages/backend/package.json">
+ 1: {
+ 2:   "name": "@kindness/backend",
+ 3:   "version": "1.0.0",
+ 4:   "private": true,
+ 5:   "type": "module",
+ 6:   "main": "./dist/index.js",
+ 7:   "scripts": {
+ 8:     "build": "tsc",
+ 9:     "dev": "tsx watch src/index.ts",
+10:     "start": "node dist/index.js"
+11:   },
+12:   "dependencies": {
+13:     "@kindness/shared": "*",
+14:     "cors": "^2.8.5",
+15:     "dotenv": "^16.4.5",
+16:     "express": "^4.19.2",
+17:     "mongoose": "^9.6.3"
+18:   },
+19:   "devDependencies": {
+20:     "@types/cors": "^2.8.17",
+21:     "@types/express": "^4.17.21",
+22:     "tsx": "^4.15.2"
+23:   }
+24: }
+</file>
+
+<file path="packages/backend/src/index.ts">
+ 1: import 'dotenv/config';
+ 2: import express, { Request, Response, NextFunction } from 'express';
+ 3: import cors from 'cors';
+ 4: import { Server } from 'http';
+ 5: import { connectDatabase, disconnectDatabase } from './config/database.js';
+ 6: import kindnessRoutes from './routes/kindness.routes.js';
+ 7: import userRoutes from './routes/user.routes.js';
+ 8: const app = express();
+ 9: const port = process.env.PORT || 5000;
+10: const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:3000';
+11: app.use(
+12:   cors({
+13:     origin: allowedOrigin,
+14:     credentials: true,
+15:   })
+16: );
+17: app.use(express.json({ limit: '10kb' }));
+18: app.use('/api/kindness', kindnessRoutes);
+19: app.use('/api/users', userRoutes);
+20: app.use((_req: Request, res: Response) => {
+21:   res.status(404).json({ message: 'Resource not found' });
+22: });
+23: app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+24:   console.error('[server]: Unhandled error:', err);
+25:   res.status(500).json({ message: 'An internal server error occurred.' });
+26: });
+27: let server: Server;
+28: async function startServer() {
+29:   try {
+30:     await connectDatabase();
+31:     server = app.listen(port, () => {
+32:       console.log(`[server]: Backend API running on http://localhost:${port}`);
+33:     });
+34:   } catch (error) {
+35:     console.error('[server]: Error starting server:', error);
+36:     process.exit(1);
+37:   }
+38: }
+39: async function handleShutdown(signal: string) {
+40:   console.log(`[server]: Received ${signal}. Starting graceful shutdown...`);
+41:   if (server) {
+42:     server.close(async (err) => {
+43:       if (err) {
+44:         console.error('[server]: Error closing HTTP server:', err);
+45:       } else {
+46:         console.log('[server]: HTTP server closed.');
+47:       }
+48:       try {
+49:         await disconnectDatabase();
+50:         process.exit(0);
+51:       } catch (dbErr) {
+52:         console.error('[server]: Error during database disconnection:', dbErr);
+53:         process.exit(1);
+54:       }
+55:     });
+56:   } else {
+57:     try {
+58:       await disconnectDatabase();
+59:       process.exit(0);
+60:     } catch (dbErr) {
+61:       console.error('[server]: Error during database disconnection:', dbErr);
+62:       process.exit(1);
+63:     }
+64:   }
+65: }
+66: process.on('SIGINT', () => handleShutdown('SIGINT'));
+67: process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+68: startServer();
+</file>
+
+<file path="packages/frontend/package.json">
+ 1: {
+ 2:   "name": "@kindness/frontend",
+ 3:   "version": "1.0.0",
+ 4:   "private": true,
+ 5:   "type": "module",
+ 6:   "scripts": {
+ 7:     "dev": "vite",
+ 8:     "build": "vite build",
+ 9:     "preview": "vite preview"
+10:   },
+11:   "dependencies": {
+12:     "@kindness/shared": "*",
+13:     "react": "^18.3.1",
+14:     "react-dom": "^18.3.1"
+15:   },
+16:   "devDependencies": {
+17:     "@types/react": "^18.3.3",
+18:     "@types/react-dom": "^18.3.0",
+19:     "@vitejs/plugin-react": "^4.3.0",
+20:     "autoprefixer": "^10.4.19",
+21:     "postcss": "^8.4.38",
+22:     "tailwindcss": "^3.4.4",
+23:     "vite": "^6.4.3",
+24:     "vite-tsconfig-paths": "^4.3.2"
+25:   }
+26: }
+</file>
+
+<file path="packages/frontend/src/App.tsx">
+ 1: export const App = () => {
+ 2:   return (
+ 3:     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-6 text-center">
+ 4:       <div className="max-w-md rounded-2xl border border-slate-100 bg-white p-8 shadow-xl">
+ 5:         <h1 className="mb-2 text-3xl font-extrabold tracking-tight text-slate-900">
+ 6:           Kindness Tracker
+ 7:         </h1>
+ 8:         <p className="mb-6 text-slate-600">
+ 9:           Your full-stack monorepo workspace is officially wired and ready for feature building!
+10:         </p>
+11:         <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+12:           <span className="size-2 animate-pulse rounded-full bg-emerald-500"></span>
+13:           Shared Contract Active
+14:         </div>
+15:       </div>
+16:     </div>
+17:   );
+18: };
+</file>
+
+<file path="packages/frontend/src/index.css">
+ 1: @tailwind base;
+ 2: @tailwind components;
+ 3: @tailwind utilities;
+ 4: @layer base {
+ 5:   body {
+ 6:     font-family: 'Inter', sans-serif;
+ 7:     @apply bg-slate-950 text-slate-100 antialiased;
+ 8:   }
+ 9:   h1,
+10:   h2,
+11:   h3,
+12:   h4,
+13:   h5,
+14:   h6 {
+15:     font-family: 'Outfit', sans-serif;
+16:   }
+17: }
+18: .glow-card {
+19:   position: relative;
+20:   background: rgba(15, 23, 42, 0.6);
+21:   backdrop-filter: blur(12px);
+22:   border: 1px solid rgba(255, 255, 255, 0.08);
+23: }
+24: .glow-card::before {
+25:   content: '';
+26:   position: absolute;
+27:   inset: -1px;
+28:   border-radius: inherit;
+29:   padding: 1px;
+30:   background: linear-gradient(
+31:     to bottom right,
+32:     rgba(244, 63, 94, 0.4),
+33:     rgba(168, 85, 247, 0.4),
+34:     transparent
+35:   );
+36:   -webkit-mask:
+37:     linear-gradient(#fff 0 0) content-box,
+38:     linear-gradient(#fff 0 0);
+39:   mask:
+40:     linear-gradient(#fff 0 0) content-box,
+41:     linear-gradient(#fff 0 0);
+42:   -webkit-mask-composite: xor;
+43:   mask-composite: exclude;
+44:   pointer-events: none;
+45: }
+</file>
+
+<file path="packages/frontend/src/main.tsx">
+ 1: import React from 'react';
+ 2: import ReactDOM from 'react-dom/client';
+ 3: import { App } from './App.js';
+ 4: import './index.css';
+ 5: const container = document.getElementById('root');
+ 6: if (container) {
+ 7:   ReactDOM.createRoot(container).render(
+ 8:     <React.StrictMode>
+ 9:       <App />
+10:     </React.StrictMode>
+11:   );
+12: }
+</file>
+
+<file path="packages/shared/src/index.ts">
+ 1: import { z } from 'zod';
+ 2: export const CATEGORY_LABELS = [
+ 3:   'Kind Words',
+ 4:   'Helping Hand',
+ 5:   'Sharing & Generosity',
+ 6:   'Special Surprise'
+ 7: ] as const;
+ 8: export const KINDNESS_CATEGORIES = {
+ 9:   WORDS: { label: CATEGORY_LABELS[0], points: 10 },
+10:   HELPING: { label: CATEGORY_LABELS[1], points: 20 },
+11:   SHARING: { label: CATEGORY_LABELS[2], points: 15 },
+12:   CUSTOM: { label: CATEGORY_LABELS[3], points: 25 }
+13: } as const;
+14: export const UserSchema = z.object({
+15:   name: z
+16:     .string()
+17:     .trim()
+18:     .min(1, 'Name is required')
+19:     .max(100, 'Name cannot exceed 100 characters')
+20: });
+21: export const KindnessLogSchema = z.object({
+22:   userId: z
+23:     .string()
+24:     .min(1, 'A valid user ID is required'),
+25:   category: z.enum(CATEGORY_LABELS, {
+26:     errorMap: () => ({ message: 'Please select a valid kindness category' })
+27:   }),
+28:   description: z
+29:     .string()
+30:     .trim()
+31:     .max(200, 'Description cannot exceed 200 characters')
+32:     .optional()
+33:     .transform(val => (val === '' ? undefined : val))
+34: });
+35: export type User = z.infer<typeof UserSchema>;
+36: export type KindnessCategoryMap = typeof KINDNESS_CATEGORIES;
+37: export type KindnessLog = z.infer<typeof KindnessLogSchema>;
+</file>
+
+</files>
